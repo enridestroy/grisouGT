@@ -1,0 +1,59 @@
+[{"description":"DBLP LOAD Petko",
+  "query":"LOAD <http://dblp.l3s.de/d2r/resource/publications/conf/ida/Valtchev99> INTO GRAPH <http://example.org/people>",
+  "group":"LOAD"}
+,{"description":"DBpedia LOAD Tim",
+  "query":"LOAD <http://dbpedia.org/resource/Tim_Berners-Lee> INTO GRAPH <http://example.org/people>",
+  "group":"LOAD"}
+,{"description":"DBpedia LOAD Barack",
+  "query":"LOAD <http://dbpedia.org/resource/Barack_Obama> INTO GRAPH <http://example.org/people>",
+  "group":"LOAD"}
+,{"description":"DBLP LOAD 1936",
+  "query":"LOAD <http://dblp.rkbexplorer.com/models/dblp-publications-1936.rdf> INTO GRAPH <http://example.org/people>",
+  "group":"LOAD"}
+
+,{"description":"DBLP LOAD 1999 (80MB)",
+  "query":"LOAD <http://dblp.rkbexplorer.com/models/dblp-publications-1999.rdf> INTO GRAPH <http://example.org/people>",
+  "group":"LOAD"}
+,{"description":"Query 1",
+  "query":"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX : <http://example.org/>\nSELECT ?s ?o FROM NAMED :people { GRAPH ?g { ?s rdf:type ?o } }",
+  "group":"QUERY"}
+,{"description":"Query 2",
+  "query":"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX : <http://example.org/>\nSELECT ?cl FROM NAMED :people { GRAPH ?g { ?s rdf:type ?cl } }",
+  "group":"QUERY"}
+
+,{"description":"WFQ 1.2 LOAD l3s.de",
+ "query":"PREFIX dc: <http://purl.org/dc/elements/1.1/>\nPREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nLOAD <http://dblp.l3s.de/d2r/sparql>\nWITH { ?c foaf:name ?o . ?s dc:creator ?c . ?s dc:title ?t . ?s dcterms:issued ?d .\n FILTER (?o = 'Guy Tremblay' || ?o = 'Aziz Salah' || ?o = 'Petko Valtchev') }\nINTO GRAPH <http://example.org/people1>",
+ "group":"LOAD"} 
+,{"description":"Query Verif WITH l3s.de",
+ "query":"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX : <http://example.org/>\nSELECT ?s ?o FROM NAMED :people1 { GRAPH ?g { ?s ?x ?o } }",
+ "group":"QUERY"}
+
+,{"description":"SPARQL 1.1+ alpha A",
+ "query":"PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX akt:  <http://www.aktors.org/ontology/portal#>\nSELECT * WHERE {\nSERVICE <http://dblp.rkbexplorer.com/models/dblp-publications-1936.rdf> { ?s akt:has-author ?o }}",
+ "group":"LOAD QUERY"}
+,{"description":"SPARQL 1.1+ alpha B",
+ "query":"PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX akt:  <http://www.aktors.org/ontology/portal#>\nPREFIX foaf: <http://xmlns.com/foaf/0.1/>\nSELECT ?s ?o ?s2 ?o2 WHERE {\n{SERVICE <http://dblp.rkbexplorer.com/models/dblp-publications-1936.rdf>\n{ ?s akt:has-author ?o }}\n{SERVICE <http://dbpedia.org/sparql> { ?s2 rdf:type ?o2 }}}",
+ "group":"LOAD QUERY"}
+,{"description":"SPARQL 1.1+ alpha C",
+ "query":"PREFIX dc: <http://purl.org/dc/elements/1.1/>\nPREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nSELECT * WHERE {\nSERVICE <http://dblp.l3s.de/d2r/sparql> {\n?c foaf:name ?o . ?s dc:creator ?c . ?s dc:title ?t . ?s dcterms:issued ?d .\nFILTER (?o = 'Guy Tremblay' || ?o = 'Aziz Salah' || ?o = 'Petko Valtchev') }}",
+ "group":"LOAD QUERY"}
+ 
+,{"description":"DBLP LOAD 2005 (200+MB)",
+  "query":"LOAD <http://dblp.rkbexplorer.com/models/dblp-publications-2005.rdf> INTO GRAPH <http://example.org/people>",
+  "group":"LOAD"}
+,{"description":"DBLP LOAD 1997",
+  "query":"LOAD <http://dblp.rkbexplorer.com/models/dblp-publications-1997.rdf> INTO GRAPH <http://example.org/people>",
+  "group":"LOAD"}
+,{"description":"WFQ 1.2 LOAD rkb",
+ "query":"PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX akt:  <http://www.aktors.org/ontology/portal#>\nPREFIX owl:  <http://www.w3.org/2002/07/owl#>\nPREFIX akts: <http://www.aktors.org/ontology/support#>\nPREFIX foaf: <http://xmlns.com/foaf/0.1/>\nLOAD <http://dblp.rkbexplorer.com/sparql>\nWITH { ?s akt:full-name ?o . \n ?b akt:has-author ?s . \n ?b akt:has-title ?t . \n ?b akt:has-date ?d . \n ?d akts:year-of ?y \n } INTO GRAPH <http://example.org/people1>",
+ "group":"LOAD"}
+,{"description":"Query Verif WITH rkb",
+ "query":"PREFIX akt:  <http://www.aktors.org/ontology/portal#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX : <http://example.org/>\nSELECT * FROM NAMED :people1 WHERE { ?s rdf:type ?o }",
+ "group":"QUERY"}
+,{"description":"Query 3",
+ "query":"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX akt: <http://www.aktors.org/ontology/portal#>\nPREFIX : <http://example.org/>\nSELECT ?n FROM NAMED :people { GRAPH ?g { \n  ?s a akt:Person . \n  ?s akt:full-name ?n \n  } FILTER ( STR(?n) = 'Petko Valtchev') } ORDER BY ASC(?n) LIMIT 10",
+  "group":"QUERY"}
+,{"description":"Query 4 rkb",
+ "query":"PREFIX id:   <http://dblp.rkbexplorer.com/id/>\nPREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX akt:  <http://www.aktors.org/ontology/portal#>\nPREFIX owl:  <http://www.w3.org/2002/07/owl#>\nPREFIX akts: <http://www.aktors.org/ontology/support#>\nPREFIX foaf: <http://xmlns.com/foaf/0.1/>\nSELECT *\nWHERE { ?s akt:full-name ?o \n  FILTER (?o = 'Petko Valtchev' || ?o = 'Jean Privat' || ?o = 'Aziz Salah')\n } LIMIT 300",
+ "group":"QUERY"}
+]
